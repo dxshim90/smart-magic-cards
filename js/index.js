@@ -79,7 +79,18 @@ const createMagicButton = () => {
   magicButton.className = 'btn btn-lg btn-secondary'
   magicButton.style.margin = '1rem'
   buttonsWrapper.appendChild(magicButton)
+  document.getElementById('magicbtn').addEventListener('click', magic)
 }
+
+const magic = () => {
+  while (cardsWrapper.firstChild) {
+    cardsWrapper.removeChild(cardsWrapper.firstChild)
+  }
+  const cards = createCardsArray()
+  appendCardsToDom(cards)
+}
+
+
 
 // Function to clear out the initial button and create new buttons to play the game.
 function createButtons() {
