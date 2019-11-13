@@ -21,24 +21,17 @@ function createCardsArray() {
 // For each dataObject, create a new card and append it to the DOM
 function appendCardsToDom(cards) {
   cards.forEach((card, i) => {
-      let k = i
-      setTimeout(function(){
-        const positionFromLeft = i * 30;
-        const cardElement = document.createElement('div');
-        cardElement.setAttribute('data-value', card.value);
-        cardElement.classList.add('card', `${card.suit}-${card.value}`);
-        cardElement.style.left = `${positionFromLeft}px`;
-        cardsWrapper.append(cardElement);
-      }, 100 * (k + 1))
-    })
+    const k = i;
+    setTimeout(() => {
+      const positionFromLeft = i * 30;
+      const cardElement = document.createElement('div');
+      cardElement.setAttribute('data-value', card.value);
+      cardElement.classList.add('card', `${card.suit}-${card.value}`);
+      cardElement.style.left = `${positionFromLeft}px`;
+      cardsWrapper.append(cardElement);
+    }, 75 * (k + 1));
+  });
 }
-
-// for(var i = 0;i < 5; i++){
-//   let k = i;
-//   setTimeout(function(){
-//       console.log('count ', k);
-//   }, 3000 * (k + 1));
-// }
 
 
 const shuffle = () => {
@@ -81,7 +74,6 @@ const createShowHideButton = () => {
 
 const magic = () => {
   while (cardsWrapper.firstChild) {
-
     cardsWrapper.removeChild(cardsWrapper.firstChild);
   }
   const cards = createCardsArray();
@@ -115,5 +107,3 @@ function startGame() {
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);
-
-
