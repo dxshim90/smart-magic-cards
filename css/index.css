@@ -5934,6 +5934,9 @@ h1 {
   border: 1px solid;
   border-radius: 10px;
 }
+.cards-wrapper.shuffling .card {
+  left: 0 !important;
+}
 
 .body-bg {
   background: #165a1c;

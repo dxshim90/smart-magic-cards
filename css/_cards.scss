@@ -5,11 +5,14 @@
   margin: 0 2rem;
   border-radius: 10px;
   
+  
   .card {
     height: $card-height;
     width: $card-width;
     position: absolute;
     background-size: 100%;
+    
+    
 
     &.hearts-1 {
       background-image: url("../assets/cards/hearts-1.svg");
@@ -179,6 +182,11 @@
       background: radial-gradient(circle, #00d4ff 0%, #090979 65%, #020024 97%);
       border: 1px solid;
       border-radius: 10px;
+    }
+  }
+  &.shuffling {
+    .card {
+      left: 0 !important;
     }
   }
 }
