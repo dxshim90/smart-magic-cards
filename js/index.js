@@ -1,6 +1,7 @@
 const suits = ['hearts', 'spades', 'diamonds', 'clubs']
 const cardsWrapper = document.querySelector('.cards-wrapper');
 const buttonsWrapper = document.querySelector('.btn-wrapper')
+let hideCards = false
 
 function createCardsArray() {
   const cards = [];
@@ -59,6 +60,16 @@ const createShowHideButton = () => {
   showHideButton.className = 'btn btn-lg btn-secondary'
   showHideButton.style.margin = '1rem'
   buttonsWrapper.appendChild(showHideButton)
+  document.getElementById('showhide-btn').addEventListener('click',showHide)
+}
+
+const showHide = () => {
+hideCards = !hideCards
+if (hideCards) {
+  cardsWrapper.className = 'cards-wrapper hidden'
+} else {
+  cardsWrapper.className = 'cards-wrapper'
+}
 }
 
 const createMagicButton = () => {
