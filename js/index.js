@@ -1,10 +1,11 @@
-const suit = 'hearts';
+const suits = ['hearts', 'spades', 'diamonds', 'clubs']
 const cardsWrapper = document.querySelector('.cards-wrapper');
 const buttonsWrapper = document.querySelector('.btn-wrapper')
 
-function createCards() {
+function createCardsArray() {
   const cards = [];
   // Create an array with objects containing the value and the suit of each card
+  suits.forEach((suit) => { 
   for (let i = 1; i <= 13; i += 1) {
     const cardObject = {
       value: i,
@@ -12,17 +13,23 @@ function createCards() {
     };
     cards.push(cardObject);
   }
+})
+return cards
+}
 
   // For each dataObject, create a new card and append it to the DOM
-  cards.forEach((card, i) => {
-    const positionFromLeft = i * 15;
-    const cardElement = document.createElement('div');
-    cardElement.setAttribute('data-value', card.value);
-    cardElement.classList.add('card', `${card.suit}-${card.value}`);
-    cardElement.style.left = `${positionFromLeft}px`;
-    cardsWrapper.append(cardElement);
-  });
-}
+  function appendCardsToDom(cards) {
+    cards.forEach((card, i) => {
+      const positionFromLeft = i * 15;
+      const cardElement = document.createElement('div');
+      cardElement.setAttribute('data-value', card.value);
+      cardElement.classList.add('card', `${card.suit}-${card.value}`);
+      cardElement.style.left = `${positionFromLeft}px`;
+      cardsWrapper.append(cardElement);
+    });
+  
+  }
+ 
 
 const createShuffleButton = () => {
   const shuffleButton = document.createElement('button')
@@ -31,6 +38,18 @@ const createShuffleButton = () => {
   shuffleButton.className = 'btn btn-lg btn-secondary'
   shuffleButton.style.margin = '1rem'
   buttonsWrapper.appendChild(shuffleButton)
+  document.getElementById('shuffle-btn').addEventListener('click', shuffle);
+}
+
+const shuffle = () => {
+  while (cardsWrapper.firstChild) {
+    cardsWrapper.removeChild(cardsWrapper.firstChild)
+  }
+  const cards = createCardsArray()
+  const shuffledCards = cards.sort(() => {
+    return 0.5 - Math.random()
+  })
+  appendCardsToDom(shuffledCards)
 }
 
 const createShowHideButton = () => {
@@ -63,7 +82,8 @@ function createButtons() {
 // and appending the buttons and all the cards to the DOM
 function startGame() {
   createButtons();
-  createCards();
+  const cards = createCardsArray()
+  appendCardsToDom(cards)
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);
